@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWTcpConnection",
       "state" : {
-        "revision" : "c64e98bbb17fa1a3862647546009464f2e6ec531",
-        "version" : "1.0.1"
+        "revision" : "cba52d2be89128a290122ba820f4245b8a74e717",
+        "version" : "1.0.2"
       }
     }
   ],

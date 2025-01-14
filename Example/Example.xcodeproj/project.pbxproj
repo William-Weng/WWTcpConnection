@@ -449,7 +449,7 @@
 			repositoryURL = "https://github.com/William-Weng/WWTcpConnection";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.2;
 			};
 		};
 		8175681A2CA2C3C600B24577 /* XCRemoteSwiftPackageReference "WWPrint" */ = {
