@@ -54,7 +54,17 @@ public extension WWTcpConnection {
                 
         connection.cancel()
         connection = NWConnection(host: host, port: port, using: .tcp)
-        connection.stateUpdateHandler = { [unowned self] state in delegate?.connection(self, state: state) }
+        
+        connection.stateUpdateHandler = { [unowned self] state in
+            
+            switch state {
+            case .setup, .preparing, .ready, .cancelled: delegate?.connection(self, state: state)
+            case .waiting(let error): delegate?.connection(self, error: .waiting(error))
+            case .failed(let error): delegate?.connection(self, error: .failed(error))
+            @unknown default: fatalError()
+            }
+        }
+        
         connection.start(queue: queue)
         
         startReceiving(minimumLength: minimumLength, maximumLength: maximumLength)

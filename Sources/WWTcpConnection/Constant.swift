@@ -14,6 +14,8 @@ public extension WWTcpConnection {
     /// 連線錯誤
     enum ConnectionError: Error {
         case network(_ error: NWError)      // 網路連線錯誤
+        case waiting(_ error: NWError)      // 網路連線等待錯誤
+        case failed(_ error: NWError)       // 網路連線其它錯誤
         case custom(_ message: String)      // 其它自訂錯誤
     }
     
