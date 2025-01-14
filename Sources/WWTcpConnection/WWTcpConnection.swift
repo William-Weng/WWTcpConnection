@@ -52,7 +52,7 @@ public extension WWTcpConnection {
         
         self.delegate = delegate
                 
-        connection.cancel()
+        cancel()
         connection = NWConnection(host: host, port: port, using: .tcp)
         
         connection.stateUpdateHandler = { [unowned self] state in
@@ -68,6 +68,11 @@ public extension WWTcpConnection {
         connection.start(queue: queue)
         
         startReceiving(minimumLength: minimumLength, maximumLength: maximumLength)
+    }
+    
+    /// 取消連線
+    func cancel() {
+        connection.cancel()
     }
     
     /// 傳送文字訊息 (APP => TCP)
