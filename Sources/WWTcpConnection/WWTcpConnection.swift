@@ -13,6 +13,7 @@ open class WWTcpConnection: NSObject {
         
     private var host: NWEndpoint.Host = "127.0.0.1"
     private var port: NWEndpoint.Port = 80
+    private var parameters: NWParameters = .tcp
     private var queue: DispatchQueue = .global()
 
     private var connection: NWConnection = NWConnection(host: "127.0.0.1", port: 80, using: .tcp)
@@ -23,13 +24,15 @@ open class WWTcpConnection: NSObject {
     /// - Parameters:
     ///   - host: NWEndpoint.Host
     ///   - port: NWEndpoint.Port
+    ///   - parameters: NWParameters
     ///   - queue: DispatchQueue
-    public init(host: NWEndpoint.Host, port: NWEndpoint.Port, queue: DispatchQueue = .global()) {
+    public init(host: NWEndpoint.Host, port: NWEndpoint.Port, using parameters: NWParameters = .tcp, queue: DispatchQueue = .global()) {
         
         super.init()
         
         self.host = host
         self.port = port
+        self.parameters = parameters
         self.queue = queue
     }
 }
@@ -51,9 +54,9 @@ public extension WWTcpConnection {
     func create(minimumLength: Int = 1, maximumLength: Int = 65535, delegate: WWTcpConnectionDelegete?) {
         
         self.delegate = delegate
-                
+        
         cancel()
-        connection = NWConnection(host: host, port: port, using: .tcp)
+        connection = NWConnection(host: host, port: port, using: parameters)
         
         connection.stateUpdateHandler = { [unowned self] state in
             
