@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var myLabel: UILabel!
     
-    let connection = WWTcpConnection(host: "127.0.0.1", port: 8080, using: .tcp)
+    let connection = WWTcpConnection(host: "127.0.0.1", port: 8080)
     
     override func viewDidLoad() {
         super.viewDidLoad()
